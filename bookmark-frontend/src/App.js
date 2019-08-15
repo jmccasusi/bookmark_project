@@ -48,11 +48,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <HeaderComponent />
-        <hr />
+        <hr class="my-4"/>
         <NewFormComponent addBookmark={this.addBookmark} baseURL={baseURL}/>
-        <hr />
+        <hr class="my-4"/>
         <ShowComponent bookmarks={this.state.bookmarks}/>
       </div>
     );
