@@ -1,0 +1,23 @@
+{
+  "name": "bookmark_project",
+  "version": "1.0.0",
+  "description": "GA-SEI Skynet HW Aaliyah Rodriguez",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmccasusi/bookmark_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmccasusi/bookmark_project/issues"
+  },
+  "homepage": "https://github.com/jmccasusi/bookmark_project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
