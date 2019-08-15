@@ -20,6 +20,16 @@ class App extends React.Component {
       bookmarks: []
     }
     this.getBookmarks = this.getBookmarks.bind(this);
+    this.addBookmark = this.addBookmark.bind(this);
+  }
+
+  addBookmark(bookmark) {
+    console.log('adding')
+    const copyBookmarks = [...this.state.bookmarks];
+    copyBookmarks.unshift(bookmark);
+    this.setState({
+      bookmarks: copyBookmarks
+    });
   }
 
   async getBookmarks() {
@@ -41,7 +51,7 @@ class App extends React.Component {
       <div className="App">
         <HeaderComponent />
         <hr />
-        <NewFormComponent />
+        <NewFormComponent addBookmark={this.addBookmark} baseURL={baseURL}/>
         <hr />
         <ShowComponent bookmarks={this.state.bookmarks}/>
       </div>
