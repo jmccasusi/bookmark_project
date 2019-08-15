@@ -25,6 +25,8 @@ class App extends React.Component {
   async getBookmarks() {
     const response = await axios(`${baseURL}/bookmark`);
     const data = response.data;
+
+    console.log(response)
     this.setState({
       bookmarks: data
     })
@@ -41,7 +43,7 @@ class App extends React.Component {
         <hr />
         <NewFormComponent />
         <hr />
-        <ShowComponent />
+        <ShowComponent bookmarks={this.state.bookmarks}/>
       </div>
     );
   }
