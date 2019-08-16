@@ -8,7 +8,7 @@ class ShowComponent extends React.Component {
             <div>
                 This is the show component.
                 <div>
-                    <BookmarkComponent bookmarks={this.props.bookmarks}/>
+                    <BookmarkComponent bookmarks={this.props.bookmarks} deleteBookmark={this.props.deleteBookmark}/>
                     <EditFormComponent/>
                 </div>
             </div>
