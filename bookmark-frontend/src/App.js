@@ -18,11 +18,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       bookmarks: []
+
     }
     this.getBookmarks = this.getBookmarks.bind(this);
     this.addBookmark = this.addBookmark.bind(this);
+    this.deleteBookmark = this.deleteBookmark.bind(this)
   }
-
+// add
   addBookmark(bookmark) {
     console.log('adding')
     const copyBookmarks = [...this.state.bookmarks];
@@ -31,7 +33,7 @@ class App extends React.Component {
       bookmarks: copyBookmarks
     });
   }
-
+// show all
   async getBookmarks() {
     const response = await axios(`${baseURL}/bookmark`);
     const data = response.data;
@@ -42,6 +44,18 @@ class App extends React.Component {
     })
   }
 
+  // delete
+  async deleteBookmark(id){
+    // await axios.delete(`${baseURL}/bookmark/${id}`)
+    const filteredBookmark =this.state.bookmarks.filter((bookmark)=> {
+      return bookmark._id !== id;
+    })
+    this.setState({
+      bookmarks: filteredBookmark
+    });
+    
+  }
+  
   async componentDidMount() {
     this.getBookmarks();
   }
@@ -53,7 +67,7 @@ class App extends React.Component {
         <hr class="my-4"/>
         <NewFormComponent addBookmark={this.addBookmark} baseURL={baseURL}/>
         <hr class="my-4"/>
-        <ShowComponent bookmarks={this.state.bookmarks}/>
+        <ShowComponent bookmarks={this.state.bookmarks} deleteBookmark={this.deleteBookmark}/>
       </div>
     );
   }
