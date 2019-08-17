@@ -2,5 +2,5 @@
 GA-SEI Skynet HW
 
 # Group Members
-Aaliyah Rodriguez
-Joem Casusi
+- Aaliyah Rodriguez
+- Joem Casusi
