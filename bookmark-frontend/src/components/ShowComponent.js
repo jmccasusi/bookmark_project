@@ -1,16 +1,17 @@
 import React from 'react';
 import BookmarkComponent from './BookmarkComponent';
-import EditFormComponent from './EditFormComponent';
 
 class ShowComponent extends React.Component {
     render() {
         return(
             <div>
-                This is the show component.
-                <div>
-                    <BookmarkComponent bookmarks={this.props.bookmarks} deleteBookmark={this.props.deleteBookmark}/>
-                    <EditFormComponent/>
-                </div>
+                    {this.props.bookmarks.map((bookmark, index)=> {
+                        return(
+                            <div key={bookmark._id}>
+                                <BookmarkComponent bookmark={bookmark} updateBookmark={this.props.updateBookmark} deleteBookmark={this.props.deleteBookmark} baseURL={this.props.baseURL}/>
+                            </div>
+                            )
+                    })}
             </div>
         )
     }

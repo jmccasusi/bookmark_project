@@ -1,42 +1,54 @@
 import React from 'react';
+import EditFormComponent from './EditFormComponent';
 
 class BookmarkComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            deleteButtonStyle: {
-
-            }
+            isDisplayed: false,
+            bookmark: {}
         }
-        this.deleteButtonHover = this.deleteButtonHover.bind(this);
-        this.deleteButtonNotHover = this.deleteButtonNotHover.bind(this);
+        this.toggleEditForm = this.toggleEditForm.bind(this);
     }
 
-    deleteButtonHover(event) {
-        // console.log(event.currentTarget)
-        event.currentTarget.style = "background-color:white; color: red"
-    }
-
-    deleteButtonNotHover(event) {
-        // console.log(event.currentTarget)
-        event.currentTarget.style = "background-color:red; color: white"
+    toggleEditForm(bookmark) {
+        if(this.state.isDisplayed === false){
+            this.setState({
+                isDisplayed: true,
+                bookmark: bookmark
+            })
+        } else {
+            this.setState({
+                isDisplayed: false,
+                bookmark: bookmark
+             })
+        }
     }
 
     render() {
+        const renderForm = this.state.isDisplayed ?  <EditFormComponent bookmark={this.state.bookmark} updateBookmark={this.props.updateBookmark} baseURL={this.props.baseURL} toggleEditForm={this.toggleEditForm}/> : null
+
         return(
-            <div>
-                {this.props.bookmarks.map((bookmark)=> {
-                    return(
-                        <div key={bookmark._id} class="row">
-                            <div class="col">
-                                <li><a href={bookmark.url}>{bookmark.title}</a></li>
-                            </div>
-                            <div class="col">
-                            <button class="btn btn-danger" onClick={() => this.props.deleteBookmark(bookmark._id)} onMouseOver={this.deleteButtonHover} onMouseOut={this.deleteButtonNotHover}>X</button>
-                            </div>
-                        </div>
-                    )
-                })}
+            <div key={this.props.bookmark._id}>
+                <div>
+                <div className="row">
+                    <div className="col">
+                        <li><a href={this.props.bookmark.url}>{this.props.bookmark.title}</a></li>
+                    </div>
+                    <div className="col">
+                    { 
+                        !this.state.isDisplayed ? <button className="btn btn-danger" onClick={() => this.props.deleteBookmark(this.props.bookmark._id)}>X</button> : null
+                    }
+                    </div>
+                    <div className="col">
+                    {
+                        this.state.isDisplayed ? <button className="btn btn-danger" onClick={() => this.toggleEditForm(this.props.bookmark)}>CANCEL</button> : <button className="btn btn-warning" onClick={() => this.toggleEditForm(this.props.bookmark)}>EDIT</button>
+                    }
+                    </div>
+                </div>
+                {renderForm}
+                <hr/>
+                </div>
             </div>
         )
     }

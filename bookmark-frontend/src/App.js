@@ -23,6 +23,7 @@ class App extends React.Component {
     this.getBookmarks = this.getBookmarks.bind(this);
     this.addBookmark = this.addBookmark.bind(this);
     this.deleteBookmark = this.deleteBookmark.bind(this)
+    this.updateBookmark = this.updateBookmark.bind(this);
   }
 // add
   addBookmark(bookmark) {
@@ -37,8 +38,6 @@ class App extends React.Component {
   async getBookmarks() {
     const response = await axios(`${baseURL}/bookmark`);
     const data = response.data;
-
-    console.log(response)
     this.setState({
       bookmarks: data
     })
@@ -46,7 +45,7 @@ class App extends React.Component {
 
   // delete
   async deleteBookmark(id){
-    // await axios.delete(`${baseURL}/bookmark/${id}`)
+    await axios.delete(`${baseURL}/bookmark/${id}`)
     const filteredBookmark =this.state.bookmarks.filter((bookmark)=> {
       return bookmark._id !== id;
     })
@@ -54,6 +53,21 @@ class App extends React.Component {
       bookmarks: filteredBookmark
     });
     
+  }
+
+  // update 
+  async updateBookmark(updatedBookmark) {
+    const updatedBookmarks = this.state.bookmarks.map((bookmark) => {
+      if(bookmark._id === updatedBookmark._id){
+        bookmark.title = updatedBookmark.title;
+        bookmark.url = updatedBookmark.url
+      }
+      return bookmark;
+      
+    })
+    this.setState({
+      bookmarks: updatedBookmarks
+    })
   }
   
   async componentDidMount() {
@@ -64,10 +78,10 @@ class App extends React.Component {
     return (
       <div className="container">
         <HeaderComponent />
-        <hr class="my-4"/>
+        <hr className="my-4"/>
         <NewFormComponent addBookmark={this.addBookmark} baseURL={baseURL}/>
-        <hr class="my-4"/>
-        <ShowComponent bookmarks={this.state.bookmarks} deleteBookmark={this.deleteBookmark}/>
+        <hr className="my-4"/>
+        <ShowComponent bookmarks={this.state.bookmarks} updateBookmark={this.updateBookmark} deleteBookmark={this.deleteBookmark} baseURL={baseURL}/>
       </div>
     );
   }
