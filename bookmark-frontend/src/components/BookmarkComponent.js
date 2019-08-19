@@ -31,23 +31,20 @@ class BookmarkComponent extends React.Component {
         return(
             <div key={this.props.bookmark._id}>
                 <div>
-                <div className="row">
-                    <div className="col">
-                        <li><a href={this.props.bookmark.url}>{this.props.bookmark.title}</a></li>
+                <div className="d-flex justify-content-between">
+                    <div>
+                        <h3><span className="badge"><a className="text-white" href={this.props.bookmark.url}>{this.props.bookmark.title}</a></span></h3>
                     </div>
-                    <div className="col">
-                    { 
-                        !this.state.isDisplayed ? <button className="btn btn-danger" onClick={() => this.props.deleteBookmark(this.props.bookmark._id)}>X</button> : null
-                    }
-                    </div>
-                    <div className="col">
-                    {
-                        this.state.isDisplayed ? <button className="btn btn-danger" onClick={() => this.toggleEditForm(this.props.bookmark)}>CANCEL</button> : <button className="btn btn-warning" onClick={() => this.toggleEditForm(this.props.bookmark)}>EDIT</button>
-                    }
+                    <div>
+                        { 
+                            this.state.isDisplayed ? <button className="btn btn-danger text-light" onClick={() => this.props.deleteBookmark(this.props.bookmark._id)}><span>🗑️ Delete Bookmark</span></button> : null
+                        }
+                        {
+                            this.state.isDisplayed ? <button className="btn btn-secondary ml-2" onClick={() => this.toggleEditForm(this.props.bookmark)}>X</button> : <button className="badge badge-primary" onClick={() => this.toggleEditForm(this.props.bookmark)}> . . .</button>
+                        }
                     </div>
                 </div>
                 {renderForm}
-                <hr/>
                 </div>
             </div>
         )

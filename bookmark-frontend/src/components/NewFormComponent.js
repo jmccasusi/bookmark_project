@@ -34,14 +34,20 @@ class NewFormComponent extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="App-custom-container rounded col-md-8 mx-auto py-4">
                 <h3>Add a New Bookmark</h3>
                 <form onSubmit={this.handleSubmit}>
-
-                <div className="form-group row">
+                <div className="form-group row d-flex justify-content-center">
+                    <div className="col-lg-6">
                     <input className="form-control col" type="text" name="title" value={this.state.title} placeholder="website" onChange={this.handleChange}/>
+                    </div>
+                    <div className="col-lg-6">
                     <input className="form-control col" type="text" name="url" value={this.state.url} placeholder="http://" onChange={this.handleChange}/>
-                    <input type="submit"  className="btn btn-primary" value="Add!"/>
+                    </div>
+                </div>
+
+                <div className="row d-flex justify-content-center px-3">
+                    <input type="submit"  className="btn btn-primary btn-block" value="Add Bookmark"/>
                 </div>
                 </form>
             </div>
