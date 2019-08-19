@@ -33,7 +33,7 @@ class BookmarkComponent extends React.Component {
                 <div>
                 <div className="d-flex justify-content-between">
                     <div>
-                        <h3><span className="badge"><a className="text-white" href={this.props.bookmark.url}>{this.props.bookmark.title}</a></span></h3>
+                        <h3><span className="badge"><a className="text-white App-titillium-font" href={this.props.bookmark.url}>{this.props.bookmark.title}</a></span></h3>
                     </div>
                     <div>
                         { 

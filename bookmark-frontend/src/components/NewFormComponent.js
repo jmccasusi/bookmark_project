@@ -38,10 +38,10 @@ class NewFormComponent extends React.Component {
                 <h3>Add a New Bookmark</h3>
                 <form onSubmit={this.handleSubmit}>
                 <div className="form-group row d-flex justify-content-center">
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 App-titillium-font">
                     <input className="form-control col" type="text" name="title" value={this.state.title} placeholder="website" onChange={this.handleChange}/>
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 App-titillium-font">
                     <input className="form-control col" type="text" name="url" value={this.state.url} placeholder="http://" onChange={this.handleChange}/>
                     </div>
                 </div>
