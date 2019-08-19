@@ -39,7 +39,7 @@ class App extends React.Component {
     const response = await axios(`${baseURL}/bookmark`);
     const data = response.data;
     this.setState({
-      bookmarks: data
+      bookmarks: data.reverse()
     })
   }
 
@@ -82,6 +82,7 @@ class App extends React.Component {
         <NewFormComponent addBookmark={this.addBookmark} baseURL={baseURL}/>
         <hr className="my-4"/>
         <ShowComponent bookmarks={this.state.bookmarks} updateBookmark={this.updateBookmark} deleteBookmark={this.deleteBookmark} baseURL={baseURL}/>
+        <hr className="my-4"/>
       </div>
     );
   }

@@ -39,12 +39,20 @@ class EditFormComponent extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="text-dark bg-white border rounded col-12 mx-auto py-4">
                 <form onSubmit={this.handleUpdate}>
-                <div className="form-group row">
-                    <input onChange={this.handleChange} className="form-control col" type="text" value={this.state.title} name="title" placeholder="website"/>
-                    <input onChange={this.handleChange} className="form-control col" type="text" name="url" value={this.state.url} placeholder="http://"/>
-                    <input type="submit"  className="btn btn-success" value="Save"/>
+                <div className="form-group row d-flex justify-content-center">
+                    <div className="col-lg-6 py-2">
+                        <label for="title">Title</label>
+                        <input onChange={this.handleChange} className="form-control col" type="text" id="title" value={this.state.title} name="title" placeholder="website"/>
+                    </div>
+                    <div className="col-lg-6 py-2">
+                        <label for="url">URL</label>
+                        <input onChange={this.handleChange} className="form-control col" type="text" id="url" name="url" value={this.state.url} placeholder="http://"/>
+                    </div>
+                </div>
+                <div className="row d-flex justify-content-center px-2">
+                    <input type="submit"  className="btn btn-success btn-block mx-auto" value="Save"/>
                 </div>
                 </form>
             </div>
